@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Movie Recommendation System</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🎬 Movie Recommendation System</h1>
+
+<form method="POST" class="search-box">
+
+<select name="movie">
+
+{% for movie in movies %}
+<option value="{{movie}}">{{movie}}</option>
+{% endfor %}
+
+</select>
+
+<button type="submit">Recommend</button>
+
+</form>
+
+{% if recommendations %}
+
+<h2>Top Picks For You</h2>
+
+<div class="movie-grid">
+
+{% for movie in recommendations %}
+
+<div class="movie-card">
+
+<img src="{{movie.poster_url}}">
+
+<div class="movie-info">
+
+<h3>{{movie.title}}</h3>
+
+<p>⭐ Rating: {{movie.rating}}</p>
+
+<p>🎬 Genre: {{movie.genre}}</p>
+
+<p>📅 {{movie.year}}</p>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+{% endif %}
+
+</div>
+
+</body>
+
+</html>
